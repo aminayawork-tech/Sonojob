@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CheckIcon, UsersIcon, ShieldCheckIcon, LightningIcon, ChartIcon } from '@/components/Icons';
 
 const PLANS = [
   {
@@ -58,33 +59,39 @@ export default function EmployersPage() {
   return (
     <div>
       {/* HERO */}
-      <section className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
-        <div
-          className="inline-flex items-center gap-2 badge mb-6"
-          style={{ background: 'rgba(245,158,11,0.1)', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.2)', fontSize: '0.75rem' }}
-        >
-          For Employers & Recruiters
-        </div>
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">
-          Hire credentialed sonographers <br className="hidden md:block" />
-          <span style={{ color: '#f59e0b' }}>faster than any other board</span>
-        </h1>
-        <p className="text-lg text-[#8b949e] max-w-2xl mx-auto mb-10">
-          SonoJob is the only job board built exclusively for ultrasound professionals.
-          Every applicant is a sonographer — no irrelevant resumes, no noise.
-        </p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <Link href="/employers/post" className="btn-amber text-base px-7 py-3">
-            Post a Job — Start at $99/mo
-          </Link>
-          <a href="mailto:hello@sonojob.com" className="btn-secondary text-base px-7 py-3">
-            Talk to Sales
-          </a>
+      <section
+        className="border-b"
+        style={{ borderColor: '#e2e8f0', background: 'linear-gradient(135deg, #fffbeb 0%, #fefce8 50%, #f0f9ff 100%)' }}
+      >
+        <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
+          <div
+            className="inline-flex items-center gap-2 badge mb-6"
+            style={{ background: '#fef3c7', color: '#b45309', border: '1px solid #fde68a', fontSize: '0.75rem' }}
+          >
+            For Employers & Recruiters
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-5 text-[#0f172a]">
+            Hire credentialed sonographers{' '}
+            <br className="hidden md:block" />
+            <span style={{ color: '#f59e0b' }}>faster than any other board</span>
+          </h1>
+          <p className="text-lg max-w-2xl mx-auto mb-10" style={{ color: '#475569' }}>
+            SonoJob is the only job board built exclusively for ultrasound professionals.
+            Every applicant is a sonographer — no irrelevant resumes, no noise.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/employers/post" className="btn-amber text-base px-7 py-3">
+              Post a Job — Start at $99/mo
+            </Link>
+            <a href="mailto:hello@sonojob.com" className="btn-secondary text-base px-7 py-3">
+              Talk to Sales
+            </a>
+          </div>
         </div>
       </section>
 
       {/* STATS */}
-      <section className="border-y" style={{ borderColor: '#30363d', background: '#161b22' }}>
+      <section className="border-b" style={{ borderColor: '#e2e8f0', background: '#fff' }}>
         <div className="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { value: '18,000+', label: 'Registered Sonographers' },
@@ -94,61 +101,106 @@ export default function EmployersPage() {
           ].map((s) => (
             <div key={s.label}>
               <div className="text-3xl font-bold" style={{ color: '#f59e0b' }}>{s.value}</div>
-              <div className="text-sm mt-1" style={{ color: '#8b949e' }}>{s.label}</div>
+              <div className="text-sm mt-1" style={{ color: '#64748b' }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WHY CHOOSE */}
+      <section className="max-w-5xl mx-auto px-4 py-14">
+        <h2 className="text-2xl font-bold text-center mb-10 text-[#0f172a]">Why employers choose SonoJob</h2>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            {
+              Icon: UsersIcon,
+              iconBg: '#e0f2fe',
+              iconColor: '#0284c7',
+              title: 'Pre-qualified candidates',
+              body: 'Every job-seeker on SonoJob holds an ultrasound credential. Zero time spent filtering unqualified applicants.'
+            },
+            {
+              Icon: ShieldCheckIcon,
+              iconBg: '#d1fae5',
+              iconColor: '#059669',
+              title: 'Specialty-specific reach',
+              body: 'Reach OB/GYN, vascular, echo, MSK, and every other specialty directly. Post once, reach the right people.'
+            },
+            {
+              Icon: LightningIcon,
+              iconBg: '#fef3c7',
+              iconColor: '#d97706',
+              title: 'Fast time-to-hire',
+              body: 'Most employers receive their first qualified application within 4 days of posting.'
+            },
+          ].map((item) => (
+            <div key={item.title} className="card p-6">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center mb-4"
+                style={{ background: item.iconBg }}
+              >
+                <item.Icon size={20} color={item.iconColor} />
+              </div>
+              <h3 className="font-semibold mb-2 text-[#0f172a]">{item.title}</h3>
+              <p className="text-sm" style={{ color: '#64748b' }}>{item.body}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold text-center mb-12">How It Works</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {STEPS.map((step) => (
-            <div key={step.n} className="card p-6 flex gap-4">
-              <div
-                className="text-2xl font-bold flex-shrink-0 w-10"
-                style={{ color: 'rgba(245,158,11,0.4)' }}
-              >
-                {step.n}
+      <section className="border-y py-14" style={{ borderColor: '#e2e8f0', background: '#f8fafc' }}>
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-10 text-[#0f172a]">How It Works</h2>
+          <div className="grid md:grid-cols-2 gap-5">
+            {STEPS.map((step) => (
+              <div key={step.n} className="card p-6 flex gap-4">
+                <div
+                  className="text-2xl font-bold flex-shrink-0 w-10 text-center"
+                  style={{ color: '#fde68a' }}
+                >
+                  {step.n}
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1 text-[#0f172a]">{step.title}</h3>
+                  <p className="text-sm" style={{ color: '#64748b' }}>{step.body}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold mb-1 text-[#e6edf3]">{step.title}</h3>
-                <p className="text-sm" style={{ color: '#8b949e' }}>{step.body}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* PRICING */}
-      <section className="max-w-5xl mx-auto px-4 py-8 pb-16">
-        <h2 className="text-2xl font-bold text-center mb-3">Transparent Pricing</h2>
-        <p className="text-center text-[#8b949e] mb-10 text-sm">No surprise fees. Cancel anytime.</p>
+      <section className="max-w-5xl mx-auto px-4 py-14">
+        <h2 className="text-2xl font-bold text-center mb-3 text-[#0f172a]">Transparent Pricing</h2>
+        <p className="text-center mb-10 text-sm" style={{ color: '#64748b' }}>No surprise fees. Cancel anytime.</p>
         <div className="grid md:grid-cols-3 gap-5">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
               className="card p-6 flex flex-col"
-              style={plan.highlighted ? { borderColor: '#f59e0b', background: 'rgba(245,158,11,0.04)' } : {}}
+              style={plan.highlighted ? { borderColor: '#f59e0b', boxShadow: '0 4px 20px rgba(245,158,11,0.12)' } : {}}
             >
               {plan.highlighted && (
                 <div
                   className="badge mb-4 self-start"
-                  style={{ background: 'rgba(245,158,11,0.15)', color: '#f59e0b' }}
+                  style={{ background: '#fef3c7', color: '#b45309' }}
                 >
                   Most Popular
                 </div>
               )}
-              <div className="font-semibold text-lg mb-1 text-[#e6edf3]">{plan.name}</div>
+              <div className="font-semibold text-lg mb-1 text-[#0f172a]">{plan.name}</div>
               <div className="mb-5">
-                <span className="text-3xl font-bold text-[#e6edf3]">{plan.price}</span>
-                <span className="text-sm" style={{ color: '#8b949e' }}>{plan.period}</span>
+                <span className="text-3xl font-bold text-[#0f172a]">{plan.price}</span>
+                <span className="text-sm" style={{ color: '#64748b' }}>{plan.period}</span>
               </div>
               <ul className="space-y-2.5 mb-6 flex-1">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm" style={{ color: '#8b949e' }}>
-                    <span style={{ color: '#f59e0b' }} className="flex-shrink-0 mt-0.5">✓</span>
+                  <li key={f} className="flex items-start gap-2 text-sm" style={{ color: '#475569' }}>
+                    <span className="flex-shrink-0 mt-0.5">
+                      <CheckIcon size={14} color="#f59e0b" />
+                    </span>
                     {f}
                   </li>
                 ))}
@@ -166,11 +218,14 @@ export default function EmployersPage() {
 
       {/* TESTIMONIAL */}
       <section className="max-w-3xl mx-auto px-4 pb-20">
-        <div className="card p-8 text-center" style={{ borderColor: 'rgba(14,165,233,0.2)' }}>
-          <p className="text-lg mb-4" style={{ color: '#e6edf3' }}>
+        <div
+          className="rounded-2xl p-8 text-center border"
+          style={{ borderColor: '#e0f2fe', background: '#f0f9ff' }}
+        >
+          <p className="text-base mb-4" style={{ color: '#334155' }}>
             "We posted on three general boards with zero qualified responses. Two days after posting on SonoJob, we had five RVT applicants. We hired within 10 days."
           </p>
-          <div className="text-sm" style={{ color: '#8b949e' }}>
+          <div className="text-sm font-medium" style={{ color: '#64748b' }}>
             — Imaging Director, Regional Vascular Center, Nashville TN
           </div>
         </div>

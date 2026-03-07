@@ -9,7 +9,7 @@ export default function Logo({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   const s = sizes[size];
 
   return (
-    <Link href="/" className="flex items-center gap-2 no-underline group">
+    <Link href="/" className="flex items-center gap-2 group" style={{ textDecoration: 'none' }}>
       {/* Ultrasound probe / wave icon */}
       <svg
         width={s.icon}

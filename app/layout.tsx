@@ -20,7 +20,7 @@ export default function RootLayout({
         <main>{children}</main>
         <footer
           className="border-t mt-20 py-10 text-center text-sm"
-          style={{ borderColor: "#30363d", color: "#8b949e" }}
+          style={{ borderColor: "#e2e8f0", color: "#94a3b8", background: "#fff" }}
         >
           <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
             <span>
@@ -30,18 +30,18 @@ export default function RootLayout({
               ultrasound community.
             </span>
             <div className="flex gap-5">
-              <a href="/jobs" className="hover:text-[#e6edf3] transition-colors">
+              <a href="/jobs" className="hover:text-[#0f172a] transition-colors">
                 Find Jobs
               </a>
               <a
                 href="/employers"
-                className="hover:text-[#e6edf3] transition-colors"
+                className="hover:text-[#0f172a] transition-colors"
               >
                 For Employers
               </a>
               <a
                 href="/about"
-                className="hover:text-[#e6edf3] transition-colors"
+                className="hover:text-[#0f172a] transition-colors"
               >
                 About
               </a>
