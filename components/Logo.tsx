@@ -9,7 +9,7 @@ export default function Logo({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
 
   return (
     <Link href="/" className="flex items-center group" style={{ textDecoration: 'none' }}>
-      <span className={`font-bold tracking-tight ${sizes[size]} leading-none`}>
+      <span className={`font-extrabold tracking-tight ${sizes[size]} leading-none`}>
         <span style={{ color: '#0f172a' }}>Sono</span>
         <span style={{ color: '#ea580c' }}>Job</span>
       </span>
