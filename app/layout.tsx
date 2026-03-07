@@ -25,8 +25,8 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
             <span>
               © {new Date().getFullYear()}{" "}
-              <span style={{ color: "#0ea5e9" }}>Sono</span>
-              <span style={{ color: "#f59e0b" }}>Job</span>. Built for the
+              <span style={{ color: "#0f172a" }}>Sono</span>
+              <span style={{ color: "#ea580c" }}>Job</span>. Built for the
               ultrasound community.
             </span>
             <div className="flex gap-5">
