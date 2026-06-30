@@ -1,13 +1,16 @@
-import { getJob, jobs } from '@/lib/jobs';
+import { getJob, jobs, type Job } from '@/lib/jobs';
+import { fetchJobById } from '@/lib/fetchJobs';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CheckIcon } from '@/components/Icons';
+
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   return jobs.map((j) => ({ id: j.id }));
 }
 
-function formatSalary(job: NonNullable<ReturnType<typeof getJob>>) {
+function formatSalary(job: Job) {
   const fmt = (n: number) =>
     job.salaryUnit === 'yr' ? `$${(n / 1000).toFixed(0)}k` : `$${n}`;
   return `${fmt(job.salaryMin)} – ${fmt(job.salaryMax)} / ${job.salaryUnit}`;
@@ -21,7 +24,7 @@ function daysAgo(n: number) {
 
 export default async function JobDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const job = getJob(id);
+  const job = getJob(id) ?? await fetchJobById(id);
   if (!job) notFound();
 
   return (
