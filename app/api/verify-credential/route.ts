@@ -107,14 +107,16 @@ export async function POST(req: NextRequest) {
 
     // Match found — verify the result is actually for the submitted person
     if (resultsLower.includes('match found') || lower.includes('match found')) {
-      // ARDMS displays names as "LASTNAME, FIRSTNAME" — confirm the submitted
-      // name appears in the response to prevent false positives from name-only matches
+      // ARDMS displays names as "LASTNAME, FIRSTNAME" — use the HTML-stripped
+      // resultsText so tags like <b>LASTNAME</b>, FIRSTNAME don't break the check
       const upperLast = lastName.trim().toUpperCase();
       const upperFirst = firstName.trim().toUpperCase();
-      const htmlUpper = html.toUpperCase();
+      // Strip all HTML tags from the full page for name matching
+      const plainText = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').toUpperCase();
+      const checkText = resultsText.length > 0 ? resultsText.toUpperCase() : plainText;
 
-      const lastNameInResult = htmlUpper.includes(upperLast + ',') || htmlUpper.includes(upperLast + ' ');
-      const firstNameInResult = htmlUpper.includes(upperFirst);
+      const lastNameInResult = checkText.includes(upperLast + ',') || checkText.includes(upperLast + ' ');
+      const firstNameInResult = checkText.includes(upperFirst);
 
       if (!lastNameInResult || !firstNameInResult) {
         // The registry returned a match for a different person
