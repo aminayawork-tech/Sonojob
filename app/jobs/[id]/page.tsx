@@ -32,7 +32,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
       <Link
         href="/jobs"
         className="text-sm mb-6 inline-flex items-center gap-1.5"
-        style={{ color: '#64748b', textDecoration: 'none' }}
+        style={{ color: '#9a9a98', textDecoration: 'none' }}
       >
         ← Back to Jobs
       </Link>
@@ -47,7 +47,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 <span className="badge" style={{ background: '#ffedd5', color: '#c2410c' }}>Urgent</span>
               )}
               {job.featured && (
-                <span className="badge" style={{ background: '#fef3c7', color: '#b45309' }}>Featured</span>
+                <span className="badge" style={{ background: '#fae8e7', color: '#b03e33' }}>Featured</span>
               )}
               {job.signOnBonus && (
                 <span className="badge" style={{ background: '#ccfbf1', color: '#0f766e' }}>
@@ -56,13 +56,13 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               )}
             </div>
 
-            <h1 className="text-2xl font-bold mb-1 text-[#0f172a]">{job.title}</h1>
-            <div className="flex items-center gap-1.5 mb-4" style={{ color: '#64748b' }}>
-              <span className="font-medium text-[#334155]">{job.employer}</span>
+            <h1 className="text-2xl font-bold mb-1 text-[#1a1a18]">{job.title}</h1>
+            <div className="flex items-center gap-1.5 mb-4" style={{ color: '#9a9a98' }}>
+              <span className="font-medium text-[#1a1a18]">{job.employer}</span>
               {job.employerVerified && (
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <circle cx="7" cy="7" r="7" fill="#0ea5e9" opacity="0.15" />
-                  <path d="M4.5 7l2 2 3.5-3.5" stroke="#0ea5e9" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="7" cy="7" r="7" fill="#d25244" opacity="0.15" />
+                  <path d="M4.5 7l2 2 3.5-3.5" stroke="#d25244" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
               <span>·</span>
@@ -79,9 +79,9 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 { label: 'On-Call', value: job.onCall ? 'Required' : 'Not Required' },
                 { label: 'Experience', value: job.experience },
               ].map(({ label, value }) => (
-                <div key={label} className="rounded-lg p-3" style={{ background: '#f8fafc', border: '1px solid #f1f5f9' }}>
-                  <div className="text-xs mb-0.5" style={{ color: '#94a3b8' }}>{label}</div>
-                  <div className="text-sm font-medium text-[#334155]">{value}</div>
+                <div key={label} className="rounded-lg p-3" style={{ background: '#ede9e3', border: '1px solid #c8c4be' }}>
+                  <div className="text-xs mb-0.5" style={{ color: '#9a9a98' }}>{label}</div>
+                  <div className="text-sm font-medium text-[#1a1a18]">{value}</div>
                 </div>
               ))}
             </div>
@@ -89,29 +89,29 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
             {/* Salary */}
             <div
               className="flex items-center gap-3 p-4 rounded-lg"
-              style={{ background: '#f0f9ff', border: '1px solid #bae6fd' }}
+              style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}
             >
               <div>
-                <div className="text-xs mb-0.5" style={{ color: '#64748b' }}>Compensation</div>
-                <div className="text-xl font-bold" style={{ color: '#0284c7' }}>{formatSalary(job)}</div>
+                <div className="text-xs mb-0.5" style={{ color: '#9a9a98' }}>Compensation</div>
+                <div className="text-xl font-bold" style={{ color: '#b03e33' }}>{formatSalary(job)}</div>
               </div>
             </div>
           </div>
 
           {/* Description */}
           <div className="card p-6 mb-4">
-            <h2 className="font-semibold mb-3 text-[#0f172a]">About This Role</h2>
-            <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>{job.description}</p>
+            <h2 className="font-semibold mb-3 text-[#1a1a18]">About This Role</h2>
+            <p className="text-sm leading-relaxed" style={{ color: '#3d3d3b' }}>{job.description}</p>
           </div>
 
           {/* Benefits */}
           <div className="card p-6 mb-4">
-            <h2 className="font-semibold mb-3 text-[#0f172a]">Benefits & Compensation</h2>
+            <h2 className="font-semibold mb-3 text-[#1a1a18]">Benefits & Compensation</h2>
             <ul className="grid sm:grid-cols-2 gap-2">
               {job.benefits.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm" style={{ color: '#475569' }}>
+                <li key={b} className="flex items-start gap-2 text-sm" style={{ color: '#3d3d3b' }}>
                   <span className="mt-0.5 flex-shrink-0">
-                    <CheckIcon size={14} color="#0ea5e9" />
+                    <CheckIcon size={14} color="#d25244" />
                   </span>
                   {b}
                 </li>
@@ -121,10 +121,10 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
 
           {/* Requirements */}
           <div className="card p-6">
-            <h2 className="font-semibold mb-4 text-[#0f172a]">Requirements</h2>
+            <h2 className="font-semibold mb-4 text-[#1a1a18]">Requirements</h2>
             <div className="space-y-4">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>
+                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#9a9a98' }}>
                   Required Credentials
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -132,7 +132,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                     <span
                       key={c}
                       className="badge"
-                      style={{ background: '#e0f2fe', color: '#0369a1', border: '1px solid #bae6fd' }}
+                      style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb' }}
                     >
                       {c}
                     </span>
@@ -142,7 +142,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
 
               {job.credentialsPreferred.length > 0 && (
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>
+                  <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#9a9a98' }}>
                     Preferred Credentials
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -150,7 +150,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                       <span
                         key={c}
                         className="badge"
-                        style={{ background: '#f1f5f9', color: '#475569' }}
+                        style={{ background: '#ede9e3', color: '#3d3d3b' }}
                       >
                         {c}
                       </span>
@@ -160,12 +160,12 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               )}
 
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>
+                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#9a9a98' }}>
                   Equipment / Systems
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {job.equipment.map((e) => (
-                    <span key={e} className="badge" style={{ background: '#f1f5f9', color: '#475569' }}>
+                    <span key={e} className="badge" style={{ background: '#ede9e3', color: '#3d3d3b' }}>
                       {e}
                     </span>
                   ))}
@@ -173,10 +173,10 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               </div>
 
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>
+                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#9a9a98' }}>
                   Team Size
                 </div>
-                <p className="text-sm" style={{ color: '#334155' }}>{job.teamSize}</p>
+                <p className="text-sm" style={{ color: '#1a1a18' }}>{job.teamSize}</p>
               </div>
             </div>
           </div>
@@ -185,8 +185,8 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
         {/* SIDEBAR */}
         <aside className="lg:w-72 flex-shrink-0 flex flex-col gap-4">
           <div className="card p-5 sticky top-20">
-            <div className="text-xs mb-1" style={{ color: '#94a3b8' }}>Posted {daysAgo(job.postedDays)}</div>
-            <div className="font-bold text-lg mb-4" style={{ color: '#0284c7' }}>{formatSalary(job)}</div>
+            <div className="text-xs mb-1" style={{ color: '#9a9a98' }}>Posted {daysAgo(job.postedDays)}</div>
+            <div className="font-bold text-lg mb-4" style={{ color: '#b03e33' }}>{formatSalary(job)}</div>
 
             <button className="btn-primary w-full justify-center text-base py-3 mb-2">
               Apply Now
@@ -195,20 +195,20 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               Save Job
             </button>
 
-            <hr className="my-4" style={{ borderColor: '#f1f5f9' }} />
+            <hr className="my-4" style={{ borderColor: '#ede9e3' }} />
 
-            <div className="text-xs space-y-2.5" style={{ color: '#64748b' }}>
+            <div className="text-xs space-y-2.5" style={{ color: '#9a9a98' }}>
               <div className="flex justify-between">
                 <span>Employer</span>
-                <span className="text-[#334155] font-medium">{job.employer}</span>
+                <span className="text-[#1a1a18] font-medium">{job.employer}</span>
               </div>
               <div className="flex justify-between">
                 <span>Location</span>
-                <span className="text-[#334155]">{job.location}</span>
+                <span className="text-[#1a1a18]">{job.location}</span>
               </div>
               <div className="flex justify-between">
                 <span>Type</span>
-                <span className="text-[#334155]">{job.employmentType}</span>
+                <span className="text-[#1a1a18]">{job.employmentType}</span>
               </div>
               {job.signOnBonus && (
                 <div className="flex justify-between">
@@ -223,7 +223,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
 
           {/* Specialties */}
           <div className="card p-5">
-            <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#94a3b8' }}>
+            <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#9a9a98' }}>
               Specialties
             </div>
             <div className="flex flex-wrap gap-2">
@@ -231,8 +231,8 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 <Link
                   key={s}
                   href={`/jobs?specialty=${encodeURIComponent(s)}`}
-                  className="badge hover:border-[#0ea5e9] transition-colors"
-                  style={{ background: '#e0f2fe', color: '#0369a1', border: '1px solid #bae6fd', textDecoration: 'none' }}
+                  className="badge hover:border-[#d25244] transition-colors"
+                  style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb', textDecoration: 'none' }}
                 >
                   {s}
                 </Link>

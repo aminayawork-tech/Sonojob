@@ -7,13 +7,13 @@ export default function Header() {
   const path = usePathname();
   const active = (href: string) =>
     path === href
-      ? 'text-[#0f172a] font-semibold'
-      : 'text-[#64748b] hover:text-[#0f172a]';
+      ? 'text-[#1a1a18] font-semibold'
+      : 'text-[#9a9a98] hover:text-[#1a1a18]';
 
   return (
     <header
       className="sticky top-0 z-50 border-b"
-      style={{ background: 'rgba(248,250,252,0.95)', backdropFilter: 'blur(12px)', borderColor: '#e2e8f0' }}
+      style={{ background: 'rgba(218,214,208,0.95)', backdropFilter: 'blur(12px)', borderColor: '#c8c4be' }}
     >
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <Logo size="md" />
@@ -31,7 +31,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/employers/post" className="btn-amber text-sm py-1.5 px-4">
+          <Link href="/employers/post" className="btn-primary text-sm py-1.5 px-4">
             Post a Job
           </Link>
         </div>

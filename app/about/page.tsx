@@ -3,8 +3,8 @@ import Link from 'next/link';
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-4 text-[#0f172a]">About SonoJob</h1>
-      <p className="mb-8 text-lg leading-relaxed" style={{ color: '#475569' }}>
+      <h1 className="text-3xl font-bold mb-4 text-[#1a1a18]">About SonoJob</h1>
+      <p className="mb-8 text-lg leading-relaxed" style={{ color: '#3d3d3b' }}>
         SonoJob exists because sonographers deserve a job board built for them — not
         adapted from a generic template that treats ultrasound as a subcategory of
         "Allied Health."
@@ -26,16 +26,16 @@ export default function AboutPage() {
           },
         ].map((item) => (
           <div key={item.title} className="card p-6">
-            <h2 className="font-semibold text-base mb-2 text-[#0f172a]">{item.title}</h2>
-            <p style={{ color: '#475569' }}>{item.body}</p>
+            <h2 className="font-semibold text-base mb-2 text-[#1a1a18]">{item.title}</h2>
+            <p style={{ color: '#3d3d3b' }}>{item.body}</p>
           </div>
         ))}
 
         <div className="card p-6">
-          <h2 className="font-semibold text-base mb-2 text-[#0f172a]">Contact</h2>
-          <p style={{ color: '#475569' }}>
+          <h2 className="font-semibold text-base mb-2 text-[#1a1a18]">Contact</h2>
+          <p style={{ color: '#3d3d3b' }}>
             Questions, partnership inquiries, or feedback:{' '}
-            <a href="mailto:hello@sonojob.com" style={{ color: '#0ea5e9' }}>hello@sonojob.com</a>
+            <a href="mailto:hello@sonojob.com" style={{ color: '#d25244' }}>hello@sonojob.com</a>
           </p>
         </div>
       </div>

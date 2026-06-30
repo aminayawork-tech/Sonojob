@@ -42,7 +42,6 @@ export default function SonographerVerifyPage() {
       ? form.specialties.filter((x) => x !== s)
       : [...form.specialties, s]);
 
-  // Build the Inteleos verification URL with pre-filled params
   const intelosUrl = `https://online.ardms.org/statusverification/?firstname=${encodeURIComponent(form.firstName)}&lastname=${encodeURIComponent(form.lastName)}&idnumber=${encodeURIComponent(form.ardmsId)}&credential=${encodeURIComponent(form.credentialType)}`;
 
   const handleVerifyClick = () => {
@@ -51,7 +50,6 @@ export default function SonographerVerifyPage() {
   };
 
   const handleComplete = () => {
-    // Store verified profile in localStorage for MVP
     const profile = {
       ...form,
       ardmsVerified: verified,
@@ -64,12 +62,12 @@ export default function SonographerVerifyPage() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4 py-12"
-      style={{ background: 'linear-gradient(135deg, #f0f9ff 0%, #f8fafc 60%, #fff7ed 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #ffffff 0%, #dad6d0 60%, #ede9e3 100%)' }}
     >
       {/* Logo */}
       <div className="mb-8">
         <Logo size="lg" />
-        <p className="text-center text-sm mt-1" style={{ color: '#64748b' }}>
+        <p className="text-center text-sm mt-1" style={{ color: '#9a9a98' }}>
           Your sonography career, verified.
         </p>
       </div>
@@ -81,16 +79,16 @@ export default function SonographerVerifyPage() {
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
               style={{
-                background: step === s ? '#0ea5e9' : (i < ['credentials','verify','profile'].indexOf(step) ? '#10b981' : '#e2e8f0'),
-                color: step === s || i < ['credentials','verify','profile'].indexOf(step) ? '#fff' : '#94a3b8',
+                background: step === s ? '#d25244' : (i < ['credentials','verify','profile'].indexOf(step) ? '#10b981' : '#c8c4be'),
+                color: step === s || i < ['credentials','verify','profile'].indexOf(step) ? '#fff' : '#9a9a98',
               }}
             >
               {i < ['credentials', 'verify', 'profile'].indexOf(step) ? '✓' : i + 1}
             </div>
-            <span className="text-xs hidden sm:block" style={{ color: step === s ? '#0f172a' : '#94a3b8' }}>
+            <span className="text-xs hidden sm:block" style={{ color: step === s ? '#1a1a18' : '#9a9a98' }}>
               {s === 'credentials' ? 'Credentials' : s === 'verify' ? 'Verify' : 'Profile'}
             </span>
-            {i < 2 && <div className="w-8 h-px" style={{ background: '#e2e8f0' }} />}
+            {i < 2 && <div className="w-8 h-px" style={{ background: '#c8c4be' }} />}
           </div>
         ))}
       </div>
@@ -101,42 +99,42 @@ export default function SonographerVerifyPage() {
         {step === 'credentials' && (
           <div className="card p-6">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#e0f2fe' }}>
-                <CredentialIcon size={20} color="#0284c7" />
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#fae8e7' }}>
+                <CredentialIcon size={20} color="#b03e33" />
               </div>
               <div>
-                <h1 className="font-bold text-lg text-[#0f172a]">Enter Your ARDMS Credentials</h1>
-                <p className="text-xs" style={{ color: '#64748b' }}>We'll verify these with Inteleos</p>
+                <h1 className="font-bold text-lg text-[#1a1a18]">Enter Your ARDMS Credentials</h1>
+                <p className="text-xs" style={{ color: '#9a9a98' }}>We'll verify these with Inteleos</p>
               </div>
             </div>
 
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium mb-1.5 text-[#334155]">First Name *</label>
+                  <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">First Name *</label>
                   <input value={form.firstName} onChange={(e) => set('firstName', e.target.value)} placeholder="Maria" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium mb-1.5 text-[#334155]">Last Name *</label>
+                  <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">Last Name *</label>
                   <input value={form.lastName} onChange={(e) => set('lastName', e.target.value)} placeholder="Santos" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-[#334155]">ARDMS / Inteleos ID Number *</label>
+                <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">ARDMS / Inteleos ID Number *</label>
                 <input
                   value={form.ardmsId}
                   onChange={(e) => set('ardmsId', e.target.value)}
                   placeholder="e.g. 123456"
                   className="font-mono"
                 />
-                <p className="text-xs mt-1" style={{ color: '#94a3b8' }}>
+                <p className="text-xs mt-1" style={{ color: '#9a9a98' }}>
                   Found on your ARDMS certificate or at myardms.ardms.org
                 </p>
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-[#334155]">Primary Credential *</label>
+                <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">Primary Credential *</label>
                 <select value={form.credentialType} onChange={(e) => set('credentialType', e.target.value)}>
                   {CREDENTIAL_TYPES.map((c) => (
                     <option key={c.value} value={c.value}>{c.label}</option>
@@ -164,33 +162,33 @@ export default function SonographerVerifyPage() {
                 <ShieldCheckIcon size={20} color="#059669" />
               </div>
               <div>
-                <h1 className="font-bold text-lg text-[#0f172a]">Verify with Inteleos</h1>
-                <p className="text-xs" style={{ color: '#64748b' }}>Confirm your credential is active</p>
+                <h1 className="font-bold text-lg text-[#1a1a18]">Verify with Inteleos</h1>
+                <p className="text-xs" style={{ color: '#9a9a98' }}>Confirm your credential is active</p>
               </div>
             </div>
 
             {/* Summary card */}
-            <div className="rounded-lg p-4 mb-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
-              <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94a3b8' }}>
+            <div className="rounded-lg p-4 mb-5" style={{ background: '#ede9e3', border: '1px solid #c8c4be' }}>
+              <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#9a9a98' }}>
                 Verifying
               </div>
               <div className="space-y-1.5 text-sm">
                 <div className="flex justify-between">
-                  <span style={{ color: '#64748b' }}>Name</span>
-                  <span className="font-medium text-[#0f172a]">{form.firstName} {form.lastName}</span>
+                  <span style={{ color: '#9a9a98' }}>Name</span>
+                  <span className="font-medium text-[#1a1a18]">{form.firstName} {form.lastName}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: '#64748b' }}>ID Number</span>
-                  <span className="font-mono font-medium text-[#0f172a]">{form.ardmsId}</span>
+                  <span style={{ color: '#9a9a98' }}>ID Number</span>
+                  <span className="font-mono font-medium text-[#1a1a18]">{form.ardmsId}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: '#64748b' }}>Credential</span>
-                  <span className="font-medium" style={{ color: '#0284c7' }}>{form.credentialType}</span>
+                  <span style={{ color: '#9a9a98' }}>Credential</span>
+                  <span className="font-medium" style={{ color: '#d25244' }}>{form.credentialType}</span>
                 </div>
               </div>
             </div>
 
-            <p className="text-sm mb-5" style={{ color: '#475569' }}>
+            <p className="text-sm mb-5" style={{ color: '#3d3d3b' }}>
               Click below to open the official Inteleos verification page with your info pre-filled.
               Confirm your credential shows as <strong>Active</strong>, then return here.
             </p>
@@ -225,11 +223,11 @@ export default function SonographerVerifyPage() {
               </button>
             </div>
 
-            <p className="text-xs text-center mt-3" style={{ color: '#94a3b8' }}>
+            <p className="text-xs text-center mt-3" style={{ color: '#9a9a98' }}>
               Can't verify right now?{' '}
               <button
                 className="underline"
-                style={{ color: '#64748b' }}
+                style={{ color: '#3d3d3b' }}
                 onClick={() => { setVerified(false); setStep('profile'); }}
               >
                 Skip — continue as unverified
@@ -244,13 +242,13 @@ export default function SonographerVerifyPage() {
             <div className="flex items-center gap-3 mb-5">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: verified ? '#d1fae5' : '#fef3c7' }}
+                style={{ background: verified ? '#d1fae5' : '#fae8e7' }}
               >
-                <ShieldCheckIcon size={20} color={verified ? '#059669' : '#d97706'} />
+                <ShieldCheckIcon size={20} color={verified ? '#059669' : '#b03e33'} />
               </div>
               <div>
-                <h1 className="font-bold text-lg text-[#0f172a]">Complete Your Profile</h1>
-                <p className="text-xs" style={{ color: verified ? '#059669' : '#d97706' }}>
+                <h1 className="font-bold text-lg text-[#1a1a18]">Complete Your Profile</h1>
+                <p className="text-xs" style={{ color: verified ? '#059669' : '#b03e33' }}>
                   {verified ? 'Credential verified — now tell us your preferences' : 'Unverified — complete profile to search jobs'}
                 </p>
               </div>
@@ -258,17 +256,17 @@ export default function SonographerVerifyPage() {
 
             <div className="flex flex-col gap-4">
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-[#334155]">Email *</label>
+                <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">Email *</label>
                 <input type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@example.com" />
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-[#334155]">City, State</label>
+                <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">City, State</label>
                 <input value={form.location} onChange={(e) => set('location', e.target.value)} placeholder="Orlando, FL" />
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-2 text-[#334155]">Specialties (select all that apply)</label>
+                <label className="block text-xs font-medium mb-2 text-[#1a1a18]">Specialties (select all that apply)</label>
                 <div className="flex flex-wrap gap-2">
                   {SPECIALTIES.map((s) => (
                     <button
@@ -278,8 +276,8 @@ export default function SonographerVerifyPage() {
                       className="badge transition-all"
                       style={
                         form.specialties.includes(s)
-                          ? { background: '#e0f2fe', color: '#0369a1', border: '1px solid #0ea5e9', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
-                          : { background: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
+                          ? { background: '#fae8e7', color: '#b03e33', border: '1px solid #d25244', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
+                          : { background: '#ede9e3', color: '#3d3d3b', border: '1px solid #c8c4be', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
                       }
                     >
                       {s}
@@ -289,7 +287,7 @@ export default function SonographerVerifyPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-[#334155]">Looking for</label>
+                <label className="block text-xs font-medium mb-1.5 text-[#1a1a18]">Looking for</label>
                 <select value={form.employmentPreference} onChange={(e) => set('employmentPreference', e.target.value)}>
                   <option value="">Any type</option>
                   <option value="Full-Time">Full-Time permanent</option>
@@ -312,9 +310,9 @@ export default function SonographerVerifyPage() {
         )}
       </div>
 
-      <p className="text-xs mt-6 text-center max-w-sm" style={{ color: '#94a3b8' }}>
+      <p className="text-xs mt-6 text-center max-w-sm" style={{ color: '#9a9a98' }}>
         SonoJob does not store your ARDMS ID on our servers. Verification is done directly
-        via the official <a href="https://online.ardms.org/statusverification/" target="_blank" rel="noopener noreferrer" style={{ color: '#0ea5e9' }}>Inteleos registry</a>.
+        via the official <a href="https://online.ardms.org/statusverification/" target="_blank" rel="noopener noreferrer" style={{ color: '#d25244' }}>Inteleos registry</a>.
       </p>
     </div>
   );
