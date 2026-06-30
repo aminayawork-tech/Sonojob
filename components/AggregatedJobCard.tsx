@@ -1,5 +1,22 @@
-import type { AggregatedJob } from '@/app/api/jobs/search/route';
 import { LocationIcon, BriefcaseIcon } from './Icons';
+
+export type AggregatedJob = {
+  id: string;
+  title: string;
+  employer: string;
+  location: string;
+  employmentType: string;
+  specialty: string[];
+  credentialsRequired: string[];
+  salaryMin: number | null;
+  salaryMax: number | null;
+  salaryUnit: string | null;
+  remote: boolean;
+  description: string;
+  applyUrl: string;
+  postedAt: string;
+  source: string;
+};
 
 function formatSalary(job: AggregatedJob) {
   if (!job.salaryMin && !job.salaryMax) return null;
