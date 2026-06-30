@@ -57,10 +57,10 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
         {job.remote && (
           <span className="badge" style={{ background: '#d1fae5', color: '#065f46' }}>Remote</span>
         )}
-        <span className="badge ml-auto" style={{ background: '#ede9e3', color: '#9a9a98' }}>
+        <span className="badge ml-auto" style={{ background: '#f4f4f4', color: '#9a9a98' }}>
           {SOURCE_LABELS[job.source] ?? job.source}
         </span>
-        <span className="badge" style={{ background: '#ede9e3', color: '#9a9a98' }}>
+        <span className="badge" style={{ background: '#f4f4f4', color: '#9a9a98' }}>
           {timeAgo(job.postedAt)}
         </span>
       </div>
@@ -72,11 +72,11 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
 
       <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs mb-3" style={{ color: '#9a9a98' }}>
         <span className="flex items-center gap-1">
-          <LocationIcon size={11} color="#c8c4be" />
+          <LocationIcon size={11} color="#e4e4e3" />
           {job.location || 'Location not specified'}
         </span>
         <span className="flex items-center gap-1">
-          <BriefcaseIcon size={11} color="#c8c4be" />
+          <BriefcaseIcon size={11} color="#e4e4e3" />
           {job.employmentType}
         </span>
       </div>
@@ -84,7 +84,7 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
       {job.specialty.length > 0 && job.specialty[0] !== 'General' && (
         <div className="flex flex-wrap gap-1.5 mb-3">
           {job.specialty.map((s) => (
-            <span key={s} className="badge" style={{ background: '#ede9e3', color: '#3d3d3b' }}>{s}</span>
+            <span key={s} className="badge" style={{ background: '#f4f4f4', color: '#3d3d3b' }}>{s}</span>
           ))}
           {job.credentialsRequired.map((c) => (
             <span key={c} className="badge" style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb' }}>{c}</span>
@@ -98,7 +98,7 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
         </p>
       )}
 
-      <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: '#ede9e3' }}>
+      <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: '#f4f4f4' }}>
         <span className="font-bold text-sm text-[#1a1a18]">
           {salary ?? <span style={{ color: '#9a9a98' }}>Salary not listed</span>}
         </span>

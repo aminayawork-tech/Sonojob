@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header
       className="sticky top-0 z-50 border-b"
-      style={{ background: 'rgba(218,214,208,0.95)', backdropFilter: 'blur(12px)', borderColor: '#c8c4be' }}
+      style={{ background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(12px)', borderColor: '#e5e5e4' }}
     >
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <Logo size="md" />

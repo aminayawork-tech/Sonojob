@@ -48,7 +48,7 @@ export default function PostJobPage() {
           </div>
         </section>
 
-        <hr style={{ borderColor: '#c8c4be' }} />
+        <hr style={{ borderColor: '#e4e4e3' }} />
 
         {/* Specialty & Credentials */}
         <section>
@@ -98,7 +98,7 @@ export default function PostJobPage() {
           </div>
         </section>
 
-        <hr style={{ borderColor: '#c8c4be' }} />
+        <hr style={{ borderColor: '#e4e4e3' }} />
 
         {/* Schedule & Pay */}
         <section>
@@ -136,7 +136,7 @@ export default function PostJobPage() {
           </div>
         </section>
 
-        <hr style={{ borderColor: '#c8c4be' }} />
+        <hr style={{ borderColor: '#e4e4e3' }} />
 
         {/* Description */}
         <section>
@@ -155,7 +155,7 @@ export default function PostJobPage() {
           </div>
         </section>
 
-        <hr style={{ borderColor: '#c8c4be' }} />
+        <hr style={{ borderColor: '#e4e4e3' }} />
 
         {/* Contact */}
         <section>

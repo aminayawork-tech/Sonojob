@@ -20,7 +20,7 @@ export default function RootLayout({
         <main>{children}</main>
         <footer
           className="border-t mt-20 py-10 text-sm"
-          style={{ borderColor: "#c8c4be", color: "#9a9a98", background: "#ffffff" }}
+          style={{ borderColor: "#e4e4e3", color: "#9a9a98", background: "#ffffff" }}
         >
           <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
             <span>

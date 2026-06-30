@@ -34,7 +34,7 @@ export default function JobCard({ job }: { job: Job }) {
             ${job.signOnBonus.toLocaleString()} Sign-On
           </span>
         )}
-        <span className="badge ml-auto" style={{ background: '#ede9e3', color: '#9a9a98' }}>
+        <span className="badge ml-auto" style={{ background: '#f4f4f4', color: '#9a9a98' }}>
           {daysAgo(job.postedDays)}
         </span>
       </div>
@@ -56,19 +56,19 @@ export default function JobCard({ job }: { job: Job }) {
       {/* Meta row */}
       <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs mb-3" style={{ color: '#9a9a98' }}>
         <span className="flex items-center gap-1">
-          <LocationIcon size={11} color="#c8c4be" />
+          <LocationIcon size={11} color="#e4e4e3" />
           {job.location}
         </span>
         <span className="flex items-center gap-1">
-          <BriefcaseIcon size={11} color="#c8c4be" />
+          <BriefcaseIcon size={11} color="#e4e4e3" />
           {job.employmentType}
         </span>
         <span className="flex items-center gap-1">
-          <ClockIcon size={11} color="#c8c4be" />
+          <ClockIcon size={11} color="#e4e4e3" />
           {job.shift}
         </span>
         <span className="flex items-center gap-1">
-          <BuildingIcon size={11} color="#c8c4be" />
+          <BuildingIcon size={11} color="#e4e4e3" />
           {job.facilityType}
         </span>
       </div>
@@ -85,14 +85,14 @@ export default function JobCard({ job }: { job: Job }) {
           </span>
         ))}
         {job.specialty.map((s) => (
-          <span key={s} className="badge" style={{ background: '#ede9e3', color: '#3d3d3b' }}>
+          <span key={s} className="badge" style={{ background: '#f4f4f4', color: '#3d3d3b' }}>
             {s}
           </span>
         ))}
       </div>
 
       {/* Salary */}
-      <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: '#ede9e3' }}>
+      <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: '#f4f4f4' }}>
         <span className="font-bold text-[#1a1a18] text-sm">{formatSalary(job)}</span>
         <span className="text-xs font-medium" style={{ color: '#d25244' }}>View Details →</span>
       </div>

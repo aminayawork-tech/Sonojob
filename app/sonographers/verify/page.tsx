@@ -18,10 +18,12 @@ const SPECIALTIES = [
 ];
 
 type Step = 'credentials' | 'verify' | 'profile';
+type VerifyStatus = 'loading' | 'active' | 'not_found' | 'inactive' | 'unavailable' | 'unknown';
 
 export default function SonographerVerifyPage() {
   const router = useRouter();
   const [step, setStep] = useState<Step>('credentials');
+  const [verifyStatus, setVerifyStatus] = useState<VerifyStatus | null>(null);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -32,7 +34,6 @@ export default function SonographerVerifyPage() {
     location: '',
     employmentPreference: '',
   });
-  const [verified, setVerified] = useState(false);
 
   const set = (field: string, value: string | string[]) =>
     setForm((f) => ({ ...f, [field]: value }));
@@ -42,22 +43,52 @@ export default function SonographerVerifyPage() {
       ? form.specialties.filter((x) => x !== s)
       : [...form.specialties, s]);
 
-  const intelosUrl = `https://online.ardms.org/statusverification/?firstname=${encodeURIComponent(form.firstName)}&lastname=${encodeURIComponent(form.lastName)}&idnumber=${encodeURIComponent(form.ardmsId)}&credential=${encodeURIComponent(form.credentialType)}`;
+  const handleCredentialSubmit = async () => {
+    setStep('verify');
+    setVerifyStatus('loading');
 
-  const handleVerifyClick = () => {
-    window.open(intelosUrl, '_blank', 'noopener,noreferrer');
-    setVerified(true);
+    try {
+      const res = await fetch('/api/verify-credential', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          ardmsId: form.ardmsId,
+          credentialType: form.credentialType,
+        }),
+      });
+      const data = await res.json();
+
+      if (data.verified) {
+        setVerifyStatus('active');
+      } else if (data.status === 'not_found') {
+        setVerifyStatus('not_found');
+      } else if (data.status === 'inactive') {
+        setVerifyStatus('inactive');
+      } else if (data.status === 'service_unavailable') {
+        setVerifyStatus('unavailable');
+      } else {
+        setVerifyStatus('unknown');
+      }
+    } catch {
+      setVerifyStatus('unavailable');
+    }
   };
 
   const handleComplete = () => {
     const profile = {
       ...form,
-      ardmsVerified: verified,
-      verifiedAt: verified ? new Date().toISOString() : null,
+      ardmsVerified: verifyStatus === 'active',
+      verifiedAt: verifyStatus === 'active' ? new Date().toISOString() : null,
     };
     localStorage.setItem('sonojob_profile', JSON.stringify(profile));
     router.push('/jobs');
   };
+
+  const intelosUrl = `https://online.ardms.org/statusverification/?firstname=${encodeURIComponent(form.firstName)}&lastname=${encodeURIComponent(form.lastName)}&idnumber=${encodeURIComponent(form.ardmsId)}&credential=${encodeURIComponent(form.credentialType)}`;
+
+  const stepIndex = step === 'credentials' ? 0 : step === 'verify' ? 1 : 2;
 
   return (
     <div
@@ -79,16 +110,16 @@ export default function SonographerVerifyPage() {
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
               style={{
-                background: step === s ? '#d25244' : (i < ['credentials','verify','profile'].indexOf(step) ? '#10b981' : '#c8c4be'),
-                color: step === s || i < ['credentials','verify','profile'].indexOf(step) ? '#fff' : '#9a9a98',
+                background: i === stepIndex ? '#d25244' : i < stepIndex ? '#10b981' : '#e4e4e3',
+                color: i <= stepIndex ? '#fff' : '#9a9a98',
               }}
             >
-              {i < ['credentials', 'verify', 'profile'].indexOf(step) ? '✓' : i + 1}
+              {i < stepIndex ? '✓' : i + 1}
             </div>
-            <span className="text-xs hidden sm:block" style={{ color: step === s ? '#1a1a18' : '#9a9a98' }}>
+            <span className="text-xs hidden sm:block" style={{ color: i === stepIndex ? '#1a1a18' : '#9a9a98' }}>
               {s === 'credentials' ? 'Credentials' : s === 'verify' ? 'Verify' : 'Profile'}
             </span>
-            {i < 2 && <div className="w-8 h-px" style={{ background: '#c8c4be' }} />}
+            {i < 2 && <div className="w-8 h-px" style={{ background: '#e4e4e3' }} />}
           </div>
         ))}
       </div>
@@ -104,7 +135,7 @@ export default function SonographerVerifyPage() {
               </div>
               <div>
                 <h1 className="font-bold text-lg text-[#1a1a18]">Enter Your ARDMS Credentials</h1>
-                <p className="text-xs" style={{ color: '#9a9a98' }}>We'll verify these with Inteleos</p>
+                <p className="text-xs" style={{ color: '#9a9a98' }}>We'll verify these directly with Inteleos</p>
               </div>
             </div>
 
@@ -145,94 +176,165 @@ export default function SonographerVerifyPage() {
               <button
                 className="btn-primary justify-center py-3 mt-2"
                 disabled={!form.firstName || !form.lastName || !form.ardmsId}
-                onClick={() => setStep('verify')}
+                onClick={handleCredentialSubmit}
                 style={{ opacity: (!form.firstName || !form.lastName || !form.ardmsId) ? 0.5 : 1 }}
               >
-                Continue →
+                Verify My Credential →
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 2: Verify on Inteleos */}
+        {/* STEP 2: Backend Verification */}
         {step === 'verify' && (
           <div className="card p-6">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#d1fae5' }}>
-                <ShieldCheckIcon size={20} color="#059669" />
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                background: verifyStatus === 'active' ? '#d1fae5' : verifyStatus === 'not_found' || verifyStatus === 'inactive' ? '#fae8e7' : '#f4f4f4'
+              }}>
+                {verifyStatus === 'loading' ? (
+                  <svg className="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#e4e4e3" strokeWidth="2" />
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="#d25244" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                ) : verifyStatus === 'active' ? (
+                  <ShieldCheckIcon size={20} color="#059669" />
+                ) : (
+                  <ShieldCheckIcon size={20} color="#b03e33" />
+                )}
               </div>
               <div>
-                <h1 className="font-bold text-lg text-[#1a1a18]">Verify with Inteleos</h1>
-                <p className="text-xs" style={{ color: '#9a9a98' }}>Confirm your credential is active</p>
+                <h1 className="font-bold text-lg text-[#1a1a18]">
+                  {verifyStatus === 'loading' ? 'Verifying with Inteleos…' :
+                   verifyStatus === 'active' ? 'Credential Verified' :
+                   verifyStatus === 'not_found' ? 'Credential Not Found' :
+                   verifyStatus === 'inactive' ? 'Credential Not Active' :
+                   'Verification Unavailable'}
+                </h1>
+                <p className="text-xs" style={{ color: '#9a9a98' }}>
+                  {verifyStatus === 'loading' ? 'Checking the Inteleos registry…' :
+                   verifyStatus === 'active' ? `${form.credentialType} for ${form.firstName} ${form.lastName} is Active` :
+                   verifyStatus === 'not_found' ? 'No matching record in the registry' :
+                   verifyStatus === 'inactive' ? 'Your credential is not currently active' :
+                   'Could not reach the Inteleos registry right now'}
+                </p>
               </div>
             </div>
 
-            {/* Summary card */}
-            <div className="rounded-lg p-4 mb-5" style={{ background: '#ede9e3', border: '1px solid #c8c4be' }}>
-              <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#9a9a98' }}>
-                Verifying
-              </div>
-              <div className="space-y-1.5 text-sm">
-                <div className="flex justify-between">
-                  <span style={{ color: '#9a9a98' }}>Name</span>
-                  <span className="font-medium text-[#1a1a18]">{form.firstName} {form.lastName}</span>
+            {/* Loading */}
+            {verifyStatus === 'loading' && (
+              <div className="py-8 flex flex-col items-center gap-3">
+                <div className="flex gap-1">
+                  {[0, 1, 2].map((i) => (
+                    <div
+                      key={i}
+                      className="w-2 h-2 rounded-full animate-bounce"
+                      style={{ background: '#d25244', animationDelay: `${i * 0.15}s` }}
+                    />
+                  ))}
                 </div>
-                <div className="flex justify-between">
-                  <span style={{ color: '#9a9a98' }}>ID Number</span>
-                  <span className="font-mono font-medium text-[#1a1a18]">{form.ardmsId}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span style={{ color: '#9a9a98' }}>Credential</span>
-                  <span className="font-medium" style={{ color: '#d25244' }}>{form.credentialType}</span>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-sm mb-5" style={{ color: '#3d3d3b' }}>
-              Click below to open the official Inteleos verification page with your info pre-filled.
-              Confirm your credential shows as <strong>Active</strong>, then return here.
-            </p>
-
-            {!verified ? (
-              <button onClick={handleVerifyClick} className="btn-primary w-full justify-center py-3 mb-3">
-                Open Inteleos Verification ↗
-              </button>
-            ) : (
-              <div
-                className="rounded-lg p-3 mb-4 flex items-center gap-2"
-                style={{ background: '#d1fae5', border: '1px solid #6ee7b7' }}
-              >
-                <ShieldCheckIcon size={18} color="#059669" />
-                <span className="text-sm font-medium" style={{ color: '#065f46' }}>
-                  Inteleos window opened — credential confirmed by you
-                </span>
+                <p className="text-sm" style={{ color: '#9a9a98' }}>
+                  Querying the official Inteleos registry…
+                </p>
               </div>
             )}
 
-            <div className="flex gap-2">
-              <button onClick={() => setStep('credentials')} className="btn-secondary flex-1 justify-center text-sm">
-                ← Back
-              </button>
-              <button
-                onClick={() => setStep('profile')}
-                className="btn-primary flex-1 justify-center text-sm"
-                style={{ opacity: !verified ? 0.5 : 1 }}
-                disabled={!verified}
-              >
-                I've Verified →
-              </button>
-            </div>
+            {/* Active — success */}
+            {verifyStatus === 'active' && (
+              <>
+                <div className="rounded-lg p-4 mb-5 flex items-start gap-3" style={{ background: '#d1fae5', border: '1px solid #6ee7b7' }}>
+                  <ShieldCheckIcon size={18} color="#059669" />
+                  <div>
+                    <div className="text-sm font-semibold" style={{ color: '#065f46' }}>
+                      {form.credentialType} confirmed as Active
+                    </div>
+                    <div className="text-xs mt-0.5" style={{ color: '#059669' }}>
+                      Verified directly with the Inteleos registry
+                    </div>
+                  </div>
+                </div>
+                <button onClick={() => setStep('profile')} className="btn-primary w-full justify-center py-3">
+                  Continue to Profile →
+                </button>
+              </>
+            )}
 
-            <p className="text-xs text-center mt-3" style={{ color: '#9a9a98' }}>
-              Can't verify right now?{' '}
-              <button
-                className="underline"
-                style={{ color: '#3d3d3b' }}
-                onClick={() => { setVerified(false); setStep('profile'); }}
-              >
-                Skip — continue as unverified
-              </button>
-            </p>
+            {/* Not found */}
+            {verifyStatus === 'not_found' && (
+              <>
+                <div className="rounded-lg p-4 mb-5" style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#b03e33' }}>
+                    No matching record found
+                  </div>
+                  <p className="text-xs" style={{ color: '#9a9a98' }}>
+                    Please check that your name, ID number, and credential type exactly match your ARDMS certificate.
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => { setStep('credentials'); setVerifyStatus(null); }} className="btn-secondary flex-1 justify-center text-sm">
+                    ← Fix Info
+                  </button>
+                  <button onClick={() => setStep('profile')} className="btn-secondary flex-1 justify-center text-sm">
+                    Continue Unverified
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* Inactive */}
+            {verifyStatus === 'inactive' && (
+              <>
+                <div className="rounded-lg p-4 mb-5" style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#b03e33' }}>
+                    Credential is not currently active
+                  </div>
+                  <p className="text-xs" style={{ color: '#9a9a98' }}>
+                    Your {form.credentialType} may be expired, lapsed, or suspended. Visit{' '}
+                    <a href="https://www.ardms.org" target="_blank" rel="noopener noreferrer" style={{ color: '#d25244' }}>ardms.org</a>{' '}
+                    to renew your credential.
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => { setStep('credentials'); setVerifyStatus(null); }} className="btn-secondary flex-1 justify-center text-sm">
+                    ← Back
+                  </button>
+                  <button onClick={() => setStep('profile')} className="btn-secondary flex-1 justify-center text-sm">
+                    Continue Unverified
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* Unavailable / unknown — offer manual fallback */}
+            {(verifyStatus === 'unavailable' || verifyStatus === 'unknown') && (
+              <>
+                <div className="rounded-lg p-4 mb-5" style={{ background: '#f4f4f4', border: '1px solid #e4e4e3' }}>
+                  <div className="text-sm font-semibold mb-1 text-[#1a1a18]">
+                    Automatic verification unavailable
+                  </div>
+                  <p className="text-xs mb-3" style={{ color: '#9a9a98' }}>
+                    We couldn't reach the Inteleos registry. You can verify manually or continue without verification.
+                  </p>
+                  <a
+                    href={intelosUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium underline"
+                    style={{ color: '#d25244' }}
+                  >
+                    Open Inteleos Verification ↗
+                  </a>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={handleCredentialSubmit} className="btn-secondary flex-1 justify-center text-sm">
+                    Retry
+                  </button>
+                  <button onClick={() => setStep('profile')} className="btn-primary flex-1 justify-center text-sm">
+                    Continue →
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         )}
 
@@ -242,14 +344,14 @@ export default function SonographerVerifyPage() {
             <div className="flex items-center gap-3 mb-5">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: verified ? '#d1fae5' : '#fae8e7' }}
+                style={{ background: verifyStatus === 'active' ? '#d1fae5' : '#fae8e7' }}
               >
-                <ShieldCheckIcon size={20} color={verified ? '#059669' : '#b03e33'} />
+                <ShieldCheckIcon size={20} color={verifyStatus === 'active' ? '#059669' : '#b03e33'} />
               </div>
               <div>
                 <h1 className="font-bold text-lg text-[#1a1a18]">Complete Your Profile</h1>
-                <p className="text-xs" style={{ color: verified ? '#059669' : '#b03e33' }}>
-                  {verified ? 'Credential verified — now tell us your preferences' : 'Unverified — complete profile to search jobs'}
+                <p className="text-xs" style={{ color: verifyStatus === 'active' ? '#059669' : '#b03e33' }}>
+                  {verifyStatus === 'active' ? 'Credential verified — now tell us your preferences' : 'Unverified — complete profile to search jobs'}
                 </p>
               </div>
             </div>
@@ -277,7 +379,7 @@ export default function SonographerVerifyPage() {
                       style={
                         form.specialties.includes(s)
                           ? { background: '#fae8e7', color: '#b03e33', border: '1px solid #d25244', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
-                          : { background: '#ede9e3', color: '#3d3d3b', border: '1px solid #c8c4be', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
+                          : { background: '#f4f4f4', color: '#3d3d3b', border: '1px solid #e4e4e3', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
                       }
                     >
                       {s}
@@ -311,8 +413,11 @@ export default function SonographerVerifyPage() {
       </div>
 
       <p className="text-xs mt-6 text-center max-w-sm" style={{ color: '#9a9a98' }}>
-        SonoJob does not store your ARDMS ID on our servers. Verification is done directly
-        via the official <a href="https://online.ardms.org/statusverification/" target="_blank" rel="noopener noreferrer" style={{ color: '#d25244' }}>Inteleos registry</a>.
+        Verification is performed directly against the official{' '}
+        <a href="https://online.ardms.org/statusverification/" target="_blank" rel="noopener noreferrer" style={{ color: '#d25244' }}>
+          Inteleos registry
+        </a>
+        . Your ARDMS ID is not stored on SonoJob servers.
       </p>
     </div>
   );

@@ -38,7 +38,7 @@ export default function HomePage() {
       {/* HERO */}
       <section
         className="border-b"
-        style={{ borderColor: '#c8c4be', background: 'linear-gradient(135deg, #ffffff 0%, #dad6d0 100%)' }}
+        style={{ borderColor: '#e5e5e4', background: '#ffffff' }}
       >
         <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
           <div
@@ -72,7 +72,7 @@ export default function HomePage() {
           <form action="/jobs" method="GET" className="max-w-2xl mx-auto">
             <div
               className="flex gap-2 p-1.5 rounded-xl border shadow-sm"
-              style={{ background: '#fff', borderColor: '#c8c4be' }}
+              style={{ background: '#fff', borderColor: '#e4e4e3' }}
             >
               <input
                 name="q"
@@ -94,7 +94,7 @@ export default function HomePage() {
                 key={tag}
                 href={`/jobs?specialty=${encodeURIComponent(tag)}`}
                 className="text-xs px-3 py-1.5 rounded-full border transition-colors hover:border-[#d25244] hover:text-[#d25244]"
-                style={{ borderColor: '#c8c4be', color: '#9a9a98', textDecoration: 'none', background: '#fff' }}
+                style={{ borderColor: '#e4e4e3', color: '#9a9a98', textDecoration: 'none', background: '#fff' }}
               >
                 {tag}
               </Link>
@@ -104,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* STATS */}
-      <section className="border-b" style={{ borderColor: '#c8c4be', background: '#fff' }}>
+      <section className="border-b" style={{ borderColor: '#e4e4e3', background: '#fff' }}>
         <div className="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {STATS.map((s) => (
             <div key={s.label}>
@@ -181,7 +181,7 @@ export default function HomePage() {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             { Icon: TargetIcon,    iconBg: '#fae8e7', iconColor: '#b03e33', title: 'Specialty-Specific',    body: "Every listing is for a sonographer. No filtering through nursing or radiology tech roles." },
-            { Icon: CredentialIcon, iconBg: '#ede9e3', iconColor: '#3d3d3b', title: 'Credential Matching',   body: "Filter by RDMS, RVT, RDCS, and more. Find jobs that match exactly what you're registered for." },
+            { Icon: CredentialIcon, iconBg: '#f4f4f4', iconColor: '#3d3d3b', title: 'Credential Matching',   body: "Filter by RDMS, RVT, RDCS, and more. Find jobs that match exactly what you're registered for." },
             { Icon: SalaryIcon,    iconBg: '#d1fae5', iconColor: '#059669', title: 'Salary Transparency',   body: "Pay ranges required on every listing. No wasted applications on undisclosed compensation." },
           ].map((item) => (
             <div key={item.title} className="card p-6 text-center hover:shadow-sm transition-shadow">

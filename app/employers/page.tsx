@@ -61,7 +61,7 @@ export default function EmployersPage() {
       {/* HERO */}
       <section
         className="border-b"
-        style={{ borderColor: '#c8c4be', background: 'linear-gradient(135deg, #ffffff 0%, #dad6d0 100%)' }}
+        style={{ borderColor: '#e5e5e4', background: '#ffffff' }}
       >
         <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
           <div
@@ -91,7 +91,7 @@ export default function EmployersPage() {
       </section>
 
       {/* STATS */}
-      <section className="border-b" style={{ borderColor: '#c8c4be', background: '#fff' }}>
+      <section className="border-b" style={{ borderColor: '#e4e4e3', background: '#fff' }}>
         <div className="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { value: '18,000+', label: 'Registered Sonographers' },
@@ -128,7 +128,7 @@ export default function EmployersPage() {
             },
             {
               Icon: LightningIcon,
-              iconBg: '#ede9e3',
+              iconBg: '#f4f4f4',
               iconColor: '#3d3d3b',
               title: 'Fast time-to-hire',
               body: 'Most employers receive their first qualified application within 4 days of posting.'
@@ -149,7 +149,7 @@ export default function EmployersPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="border-y py-14" style={{ borderColor: '#c8c4be', background: '#ede9e3' }}>
+      <section className="border-y py-14" style={{ borderColor: '#e4e4e3', background: '#f4f4f4' }}>
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-10 text-[#1a1a18]">How It Works</h2>
           <div className="grid md:grid-cols-2 gap-5">

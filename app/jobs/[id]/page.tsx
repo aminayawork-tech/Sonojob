@@ -79,7 +79,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 { label: 'On-Call', value: job.onCall ? 'Required' : 'Not Required' },
                 { label: 'Experience', value: job.experience },
               ].map(({ label, value }) => (
-                <div key={label} className="rounded-lg p-3" style={{ background: '#ede9e3', border: '1px solid #c8c4be' }}>
+                <div key={label} className="rounded-lg p-3" style={{ background: '#f4f4f4', border: '1px solid #e4e4e3' }}>
                   <div className="text-xs mb-0.5" style={{ color: '#9a9a98' }}>{label}</div>
                   <div className="text-sm font-medium text-[#1a1a18]">{value}</div>
                 </div>
@@ -150,7 +150,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                       <span
                         key={c}
                         className="badge"
-                        style={{ background: '#ede9e3', color: '#3d3d3b' }}
+                        style={{ background: '#f4f4f4', color: '#3d3d3b' }}
                       >
                         {c}
                       </span>
@@ -165,7 +165,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {job.equipment.map((e) => (
-                    <span key={e} className="badge" style={{ background: '#ede9e3', color: '#3d3d3b' }}>
+                    <span key={e} className="badge" style={{ background: '#f4f4f4', color: '#3d3d3b' }}>
                       {e}
                     </span>
                   ))}
@@ -195,7 +195,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               Save Job
             </button>
 
-            <hr className="my-4" style={{ borderColor: '#ede9e3' }} />
+            <hr className="my-4" style={{ borderColor: '#f4f4f4' }} />
 
             <div className="text-xs space-y-2.5" style={{ color: '#9a9a98' }}>
               <div className="flex justify-between">
