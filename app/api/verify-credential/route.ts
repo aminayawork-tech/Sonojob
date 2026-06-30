@@ -105,12 +105,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ verified: false, status: 'not_found' });
     }
 
-    // Match found — extract "Valid Until: YYYY-MM-DD"
+    // Match found — verify the result is actually for the submitted person
     if (resultsLower.includes('match found') || lower.includes('match found')) {
+      // ARDMS displays names as "LASTNAME, FIRSTNAME" — confirm the submitted
+      // name appears in the response to prevent false positives from name-only matches
+      const upperLast = lastName.trim().toUpperCase();
+      const upperFirst = firstName.trim().toUpperCase();
+      const htmlUpper = html.toUpperCase();
+
+      const lastNameInResult = htmlUpper.includes(upperLast + ',') || htmlUpper.includes(upperLast + ' ');
+      const firstNameInResult = htmlUpper.includes(upperFirst);
+
+      if (!lastNameInResult || !firstNameInResult) {
+        // The registry returned a match for a different person
+        return NextResponse.json({ verified: false, status: 'not_found' });
+      }
+
+      // Extract "Valid Until: YYYY-MM-DD" to check active vs expired
       const validUntilMatch = html.match(/[Vv]alid\s+[Uu]ntil[:\s]+(\d{4}-\d{2}-\d{2})/);
       const validUntil = validUntilMatch?.[1] ?? null;
 
-      // Check if the credential is still active
       if (validUntil) {
         const expiry = new Date(validUntil);
         const now = new Date();
@@ -120,7 +134,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ verified: true, status: 'active', validUntil });
       }
 
-      // "match found" but no expiry date — treat as active
+      // "match found" but no expiry date — check for inactive keywords
       if (lower.includes('inactive') || lower.includes('expired') || lower.includes('lapsed') || lower.includes('revoked')) {
         return NextResponse.json({ verified: false, status: 'inactive' });
       }
