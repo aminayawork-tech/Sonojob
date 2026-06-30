@@ -53,10 +53,26 @@ export default function HomePage() {
             Find your next{' '}
             <span style={{ color: '#0ea5e9' }}>sonographer</span> job
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-10" style={{ color: '#475569' }}>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ color: '#475569' }}>
             Search thousands of ultrasound positions by specialty, credential, and location.
             No generic job-board noise — only sonography roles.
           </p>
+
+          {/* CTA split */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+            <Link
+              href="/sonographers/verify"
+              className="btn-primary text-base px-7 py-3"
+            >
+              Verify My ARDMS Credentials
+            </Link>
+            <Link
+              href="/jobs"
+              className="btn-secondary text-base px-7 py-3"
+            >
+              Browse All Jobs
+            </Link>
+          </div>
 
           {/* Search bar */}
           <form action="/jobs" method="GET" className="max-w-2xl mx-auto">
