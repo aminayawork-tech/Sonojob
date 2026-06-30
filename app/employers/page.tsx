@@ -66,14 +66,14 @@ export default function EmployersPage() {
         <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
           <div
             className="inline-flex items-center gap-2 badge mb-6"
-            style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb', fontSize: '0.75rem' }}
+            style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4', fontSize: '0.75rem' }}
           >
             For Employers & Recruiters
           </div>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-5 text-[#1a1a18]">
             Hire credentialed sonographers{' '}
             <br className="hidden md:block" />
-            <span style={{ color: '#d25244' }}>faster than any other board</span>
+            <span style={{ color: '#5cb167' }}>faster than any other board</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-10" style={{ color: '#3d3d3b' }}>
             SonoJob is the only job board built exclusively for ultrasound professionals.
@@ -100,7 +100,7 @@ export default function EmployersPage() {
             { value: '94%', label: 'Credential Verified' },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-3xl font-bold" style={{ color: '#d25244' }}>{s.value}</div>
+              <div className="text-3xl font-bold" style={{ color: '#5cb167' }}>{s.value}</div>
               <div className="text-sm mt-1" style={{ color: '#9a9a98' }}>{s.label}</div>
             </div>
           ))}
@@ -114,8 +114,8 @@ export default function EmployersPage() {
           {[
             {
               Icon: UsersIcon,
-              iconBg: '#fae8e7',
-              iconColor: '#b03e33',
+              iconBg: '#ebf5ec',
+              iconColor: '#3d9b4a',
               title: 'Pre-qualified candidates',
               body: 'Every job-seeker on SonoJob holds an ultrasound credential. Zero time spent filtering unqualified applicants.'
             },
@@ -157,7 +157,7 @@ export default function EmployersPage() {
               <div key={step.n} className="card p-6 flex gap-4">
                 <div
                   className="text-2xl font-bold flex-shrink-0 w-10 text-center"
-                  style={{ color: '#d25244' }}
+                  style={{ color: '#5cb167' }}
                 >
                   {step.n}
                 </div>
@@ -180,12 +180,12 @@ export default function EmployersPage() {
             <div
               key={plan.name}
               className="card p-6 flex flex-col"
-              style={plan.highlighted ? { borderColor: '#d25244', boxShadow: '0 4px 20px rgba(210,82,68,0.12)' } : {}}
+              style={plan.highlighted ? { borderColor: '#5cb167', boxShadow: '0 4px 20px rgba(210,82,68,0.12)' } : {}}
             >
               {plan.highlighted && (
                 <div
                   className="badge mb-4 self-start"
-                  style={{ background: '#fae8e7', color: '#b03e33' }}
+                  style={{ background: '#ebf5ec', color: '#3d9b4a' }}
                 >
                   Most Popular
                 </div>
@@ -199,7 +199,7 @@ export default function EmployersPage() {
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm" style={{ color: '#3d3d3b' }}>
                     <span className="flex-shrink-0 mt-0.5">
-                      <CheckIcon size={14} color="#d25244" />
+                      <CheckIcon size={14} color="#5cb167" />
                     </span>
                     {f}
                   </li>
@@ -220,7 +220,7 @@ export default function EmployersPage() {
       <section className="max-w-3xl mx-auto px-4 pb-20">
         <div
           className="rounded-2xl p-8 text-center border"
-          style={{ borderColor: '#f0c0bb', background: '#fae8e7' }}
+          style={{ borderColor: '#c2e5c4', background: '#ebf5ec' }}
         >
           <p className="text-base mb-4" style={{ color: '#1a1a18' }}>
             "We posted on three general boards with zero qualified responses. Two days after posting on SonoJob, we had five RVT applicants. We hired within 10 days."

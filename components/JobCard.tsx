@@ -18,7 +18,7 @@ export default function JobCard({ job }: { job: Job }) {
   return (
     <Link
       href={`/jobs/${job.id}`}
-      className="card block p-5 hover:border-[#d25244] hover:shadow-sm transition-all group"
+      className="card block p-5 hover:border-[#5cb167] hover:shadow-sm transition-all group"
       style={{ textDecoration: 'none' }}
     >
       {/* Top badges */}
@@ -27,7 +27,7 @@ export default function JobCard({ job }: { job: Job }) {
           <span className="badge" style={{ background: '#ffedd5', color: '#c2410c' }}>Urgent</span>
         )}
         {job.featured && (
-          <span className="badge" style={{ background: '#fae8e7', color: '#b03e33' }}>Featured</span>
+          <span className="badge" style={{ background: '#ebf5ec', color: '#3d9b4a' }}>Featured</span>
         )}
         {job.signOnBonus && (
           <span className="badge" style={{ background: '#d1fae5', color: '#065f46' }}>
@@ -40,15 +40,15 @@ export default function JobCard({ job }: { job: Job }) {
       </div>
 
       {/* Title & employer */}
-      <h3 className="font-semibold text-[#1a1a18] text-base leading-snug group-hover:text-[#d25244] transition-colors mb-0.5">
+      <h3 className="font-semibold text-base leading-snug group-hover:text-[#3d9b4a] transition-colors mb-0.5" style={{ color: '#5cb167' }}>
         {job.title}
       </h3>
       <div className="flex items-center gap-1.5 text-sm mb-3" style={{ color: '#9a9a98' }}>
         <span className="text-[#3d3d3b] font-medium">{job.employer}</span>
         {job.employerVerified && (
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" className="flex-shrink-0">
-            <circle cx="6.5" cy="6.5" r="6.5" fill="#d25244" opacity="0.15" />
-            <path d="M4 6.5l1.8 1.8 3.2-3.2" stroke="#d25244" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="6.5" cy="6.5" r="6.5" fill="#5cb167" opacity="0.15" />
+            <path d="M4 6.5l1.8 1.8 3.2-3.2" stroke="#5cb167" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         )}
       </div>
@@ -79,7 +79,7 @@ export default function JobCard({ job }: { job: Job }) {
           <span
             key={c}
             className="badge"
-            style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb' }}
+            style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4' }}
           >
             {c}
           </span>
@@ -93,8 +93,8 @@ export default function JobCard({ job }: { job: Job }) {
 
       {/* Salary */}
       <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: '#f4f4f4' }}>
-        <span className="font-bold text-[#1a1a18] text-sm">{formatSalary(job)}</span>
-        <span className="text-xs font-medium" style={{ color: '#d25244' }}>View Details →</span>
+        <span className="font-bold text-sm" style={{ color: '#5cb167' }}>{formatSalary(job)}</span>
+        <span className="text-xs font-medium" style={{ color: '#5cb167' }}>View Details →</span>
       </div>
     </Link>
   );

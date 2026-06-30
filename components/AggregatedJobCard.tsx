@@ -50,7 +50,7 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
       href={job.applyUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="card block p-5 hover:border-[#d25244] hover:shadow-sm transition-all group"
+      className="card block p-5 hover:border-[#5cb167] hover:shadow-sm transition-all group"
       style={{ textDecoration: 'none' }}
     >
       <div className="flex flex-wrap gap-1.5 mb-3">
@@ -65,7 +65,7 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
         </span>
       </div>
 
-      <h3 className="font-semibold text-[#1a1a18] text-base leading-snug group-hover:text-[#d25244] transition-colors mb-0.5">
+      <h3 className="font-semibold text-base leading-snug group-hover:text-[#3d9b4a] transition-colors mb-0.5" style={{ color: '#5cb167' }}>
         {job.title}
       </h3>
       <div className="text-sm font-medium text-[#3d3d3b] mb-3">{job.employer}</div>
@@ -87,7 +87,7 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
             <span key={s} className="badge" style={{ background: '#f4f4f4', color: '#3d3d3b' }}>{s}</span>
           ))}
           {job.credentialsRequired.map((c) => (
-            <span key={c} className="badge" style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb' }}>{c}</span>
+            <span key={c} className="badge" style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4' }}>{c}</span>
           ))}
         </div>
       )}
@@ -99,10 +99,10 @@ export default function AggregatedJobCard({ job }: { job: AggregatedJob }) {
       )}
 
       <div className="flex items-center justify-between pt-2 border-t" style={{ borderColor: '#f4f4f4' }}>
-        <span className="font-bold text-sm text-[#1a1a18]">
-          {salary ?? <span style={{ color: '#9a9a98' }}>Salary not listed</span>}
+        <span className="font-bold text-sm" style={{ color: job.salaryMin || job.salaryMax ? '#5cb167' : '#9a9a98' }}>
+          {salary ?? 'Salary not listed'}
         </span>
-        <span className="text-xs font-medium" style={{ color: '#d25244' }}>Apply ↗</span>
+        <span className="text-xs font-medium" style={{ color: '#5cb167' }}>Apply ↗</span>
       </div>
     </a>
   );

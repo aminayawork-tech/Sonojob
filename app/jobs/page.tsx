@@ -127,7 +127,7 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
           {liveJobs.length > 0 && (
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="badge" style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb', textTransform: 'none', fontSize: '0.7rem' }}>
+                <span className="badge" style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4', textTransform: 'none', fontSize: '0.7rem' }}>
                   From Across the Web
                 </span>
                 <span className="text-xs" style={{ color: '#9a9a98' }}>
@@ -142,13 +142,13 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
 
           {/* API key setup notice */}
           {!hasApiKey && (
-            <div className="rounded-lg p-4 text-sm flex items-start gap-3" style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}>
+            <div className="rounded-lg p-4 text-sm flex items-start gap-3" style={{ background: '#ebf5ec', border: '1px solid #c2e5c4' }}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0 mt-0.5">
-                <circle cx="8" cy="8" r="7" stroke="#d25244" strokeWidth="1.2" />
-                <path d="M8 7v4M8 5v.5" stroke="#d25244" strokeWidth="1.3" strokeLinecap="round" />
+                <circle cx="8" cy="8" r="7" stroke="#5cb167" strokeWidth="1.2" />
+                <path d="M8 7v4M8 5v.5" stroke="#5cb167" strokeWidth="1.3" strokeLinecap="round" />
               </svg>
-              <div style={{ color: '#b03e33' }}>
-                <strong>Live jobs ready.</strong> Add <code className="text-xs px-1 rounded" style={{ background: '#f0c0bb' }}>JSEARCH_API_KEY</code> to <code className="text-xs px-1 rounded" style={{ background: '#f0c0bb' }}>.env.local</code> to pull real-time sonographer jobs from LinkedIn, Indeed, ZipRecruiter, USAJOBS, and more.
+              <div style={{ color: '#3d9b4a' }}>
+                <strong>Live jobs ready.</strong> Add <code className="text-xs px-1 rounded" style={{ background: '#c2e5c4' }}>JSEARCH_API_KEY</code> to <code className="text-xs px-1 rounded" style={{ background: '#c2e5c4' }}>.env.local</code> to pull real-time sonographer jobs from LinkedIn, Indeed, ZipRecruiter, USAJOBS, and more.
               </div>
             </div>
           )}

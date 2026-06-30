@@ -47,7 +47,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 <span className="badge" style={{ background: '#ffedd5', color: '#c2410c' }}>Urgent</span>
               )}
               {job.featured && (
-                <span className="badge" style={{ background: '#fae8e7', color: '#b03e33' }}>Featured</span>
+                <span className="badge" style={{ background: '#ebf5ec', color: '#3d9b4a' }}>Featured</span>
               )}
               {job.signOnBonus && (
                 <span className="badge" style={{ background: '#ccfbf1', color: '#0f766e' }}>
@@ -61,8 +61,8 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               <span className="font-medium text-[#1a1a18]">{job.employer}</span>
               {job.employerVerified && (
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <circle cx="7" cy="7" r="7" fill="#d25244" opacity="0.15" />
-                  <path d="M4.5 7l2 2 3.5-3.5" stroke="#d25244" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="7" cy="7" r="7" fill="#5cb167" opacity="0.15" />
+                  <path d="M4.5 7l2 2 3.5-3.5" stroke="#5cb167" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
               <span>·</span>
@@ -89,11 +89,11 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
             {/* Salary */}
             <div
               className="flex items-center gap-3 p-4 rounded-lg"
-              style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}
+              style={{ background: '#ebf5ec', border: '1px solid #c2e5c4' }}
             >
               <div>
                 <div className="text-xs mb-0.5" style={{ color: '#9a9a98' }}>Compensation</div>
-                <div className="text-xl font-bold" style={{ color: '#b03e33' }}>{formatSalary(job)}</div>
+                <div className="text-xl font-bold" style={{ color: '#3d9b4a' }}>{formatSalary(job)}</div>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               {job.benefits.map((b) => (
                 <li key={b} className="flex items-start gap-2 text-sm" style={{ color: '#3d3d3b' }}>
                   <span className="mt-0.5 flex-shrink-0">
-                    <CheckIcon size={14} color="#d25244" />
+                    <CheckIcon size={14} color="#5cb167" />
                   </span>
                   {b}
                 </li>
@@ -132,7 +132,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                     <span
                       key={c}
                       className="badge"
-                      style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb' }}
+                      style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4' }}
                     >
                       {c}
                     </span>
@@ -186,7 +186,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
         <aside className="lg:w-72 flex-shrink-0 flex flex-col gap-4">
           <div className="card p-5 sticky top-20">
             <div className="text-xs mb-1" style={{ color: '#9a9a98' }}>Posted {daysAgo(job.postedDays)}</div>
-            <div className="font-bold text-lg mb-4" style={{ color: '#b03e33' }}>{formatSalary(job)}</div>
+            <div className="font-bold text-lg mb-4" style={{ color: '#3d9b4a' }}>{formatSalary(job)}</div>
 
             <button className="btn-primary w-full justify-center text-base py-3 mb-2">
               Apply Now
@@ -231,8 +231,8 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 <Link
                   key={s}
                   href={`/jobs?specialty=${encodeURIComponent(s)}`}
-                  className="badge hover:border-[#d25244] transition-colors"
-                  style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb', textDecoration: 'none' }}
+                  className="badge hover:border-[#5cb167] transition-colors"
+                  style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4', textDecoration: 'none' }}
                 >
                   {s}
                 </Link>

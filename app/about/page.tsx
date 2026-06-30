@@ -35,7 +35,7 @@ export default function AboutPage() {
           <h2 className="font-semibold text-base mb-2 text-[#1a1a18]">Contact</h2>
           <p style={{ color: '#3d3d3b' }}>
             Questions, partnership inquiries, or feedback:{' '}
-            <a href="mailto:hello@sonojob.com" style={{ color: '#d25244' }}>hello@sonojob.com</a>
+            <a href="mailto:hello@sonojob.com" style={{ color: '#5cb167' }}>hello@sonojob.com</a>
           </p>
         </div>
       </div>

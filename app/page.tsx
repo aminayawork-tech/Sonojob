@@ -43,15 +43,15 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
           <div
             className="inline-flex items-center gap-2 badge mb-6"
-            style={{ background: '#fae8e7', color: '#b03e33', border: '1px solid #f0c0bb', fontSize: '0.75rem' }}
+            style={{ background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #c2e5c4', fontSize: '0.75rem' }}
           >
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#d25244' }} />
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#5cb167' }} />
             Built exclusively for the ultrasound community
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-5 text-[#1a1a18]">
             Find your next{' '}
-            <span style={{ color: '#d25244' }}>sonographer</span> job
+            <span style={{ color: '#5cb167' }}>sonographer</span> job
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ color: '#3d3d3b' }}>
             Search thousands of ultrasound positions by specialty, credential, and location.
@@ -93,7 +93,7 @@ export default function HomePage() {
               <Link
                 key={tag}
                 href={`/jobs?specialty=${encodeURIComponent(tag)}`}
-                className="text-xs px-3 py-1.5 rounded-full border transition-colors hover:border-[#d25244] hover:text-[#d25244]"
+                className="text-xs px-3 py-1.5 rounded-full border transition-colors hover:border-[#5cb167] hover:text-[#5cb167]"
                 style={{ borderColor: '#e4e4e3', color: '#9a9a98', textDecoration: 'none', background: '#fff' }}
               >
                 {tag}
@@ -108,7 +108,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {STATS.map((s) => (
             <div key={s.label}>
-              <div className="text-3xl font-bold" style={{ color: '#d25244' }}>{s.value}</div>
+              <div className="text-3xl font-bold" style={{ color: '#5cb167' }}>{s.value}</div>
               <div className="text-sm mt-1" style={{ color: '#9a9a98' }}>{s.label}</div>
             </div>
           ))}
@@ -120,10 +120,10 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-4 pt-14">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-[#1a1a18] flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full animate-pulse inline-block" style={{ background: '#d25244' }} />
+              <span className="w-2 h-2 rounded-full animate-pulse inline-block" style={{ background: '#5cb167' }} />
               Urgent / Travel Openings
             </h2>
-            <Link href="/jobs?employmentType=Travel%2FContract" className="text-sm font-medium" style={{ color: '#d25244', textDecoration: 'none' }}>
+            <Link href="/jobs?employmentType=Travel%2FContract" className="text-sm font-medium" style={{ color: '#5cb167', textDecoration: 'none' }}>
               See all →
             </Link>
           </div>
@@ -137,7 +137,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 pt-14">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-bold text-[#1a1a18]">Featured Jobs</h2>
-          <Link href="/jobs" className="text-sm font-medium" style={{ color: '#d25244', textDecoration: 'none' }}>
+          <Link href="/jobs" className="text-sm font-medium" style={{ color: '#5cb167', textDecoration: 'none' }}>
             View all jobs →
           </Link>
         </div>
@@ -157,13 +157,13 @@ export default function HomePage() {
               <Link
                 key={spec}
                 href={`/jobs?specialty=${encodeURIComponent(spec)}`}
-                className="card p-4 flex flex-col items-center gap-2.5 text-center hover:border-[#d25244] hover:shadow-sm transition-all group"
+                className="card p-4 flex flex-col items-center gap-2.5 text-center hover:border-[#5cb167] hover:shadow-sm transition-all group"
                 style={{ textDecoration: 'none' }}
               >
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#fae8e7' }}>
-                  <Icon size={20} color="#b03e33" />
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#ebf5ec' }}>
+                  <Icon size={20} color="#3d9b4a" />
                 </div>
-                <span className="text-sm font-medium group-hover:text-[#d25244] transition-colors text-[#1a1a18]">
+                <span className="text-sm font-medium group-hover:text-[#5cb167] transition-colors text-[#1a1a18]">
                   {spec}
                 </span>
                 <span className="text-xs" style={{ color: '#9a9a98' }}>
@@ -180,7 +180,7 @@ export default function HomePage() {
         <h2 className="text-xl font-bold text-center mb-10 text-[#1a1a18]">Why SonoJob?</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { Icon: TargetIcon,    iconBg: '#fae8e7', iconColor: '#b03e33', title: 'Specialty-Specific',    body: "Every listing is for a sonographer. No filtering through nursing or radiology tech roles." },
+            { Icon: TargetIcon,    iconBg: '#ebf5ec', iconColor: '#3d9b4a', title: 'Specialty-Specific',    body: "Every listing is for a sonographer. No filtering through nursing or radiology tech roles." },
             { Icon: CredentialIcon, iconBg: '#f4f4f4', iconColor: '#3d3d3b', title: 'Credential Matching',   body: "Filter by RDMS, RVT, RDCS, and more. Find jobs that match exactly what you're registered for." },
             { Icon: SalaryIcon,    iconBg: '#d1fae5', iconColor: '#059669', title: 'Salary Transparency',   body: "Pay ranges required on every listing. No wasted applications on undisclosed compensation." },
           ].map((item) => (
@@ -199,7 +199,7 @@ export default function HomePage() {
       <section className="max-w-4xl mx-auto px-4 py-16">
         <div
           className="rounded-2xl p-8 md:p-12 text-center border"
-          style={{ borderColor: '#f0c0bb', background: 'linear-gradient(135deg, #fae8e7 0%, #fff 100%)' }}
+          style={{ borderColor: '#c2e5c4', background: 'linear-gradient(135deg, #ebf5ec 0%, #fff 100%)' }}
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#1a1a18]">
             Hiring a sonographer?

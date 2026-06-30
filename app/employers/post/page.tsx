@@ -181,7 +181,7 @@ export default function PostJobPage() {
                 ].map((p) => (
                   <label
                     key={p.name}
-                    className="card p-3 cursor-pointer hover:border-[#d25244] transition-colors flex items-center gap-2"
+                    className="card p-3 cursor-pointer hover:border-[#5cb167] transition-colors flex items-center gap-2"
                     style={p.popular ? { borderColor: 'rgba(210,82,68,0.4)' } : {}}
                   >
                     <input type="radio" name="plan" value={p.name.toLowerCase()} className="w-auto border-none bg-transparent p-0" />

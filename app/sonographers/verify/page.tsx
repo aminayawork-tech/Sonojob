@@ -110,7 +110,7 @@ export default function SonographerVerifyPage() {
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
               style={{
-                background: i === stepIndex ? '#d25244' : i < stepIndex ? '#10b981' : '#e4e4e3',
+                background: i === stepIndex ? '#5cb167' : i < stepIndex ? '#10b981' : '#e4e4e3',
                 color: i <= stepIndex ? '#fff' : '#9a9a98',
               }}
             >
@@ -130,8 +130,8 @@ export default function SonographerVerifyPage() {
         {step === 'credentials' && (
           <div className="card p-6">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#fae8e7' }}>
-                <CredentialIcon size={20} color="#b03e33" />
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#ebf5ec' }}>
+                <CredentialIcon size={20} color="#3d9b4a" />
               </div>
               <div>
                 <h1 className="font-bold text-lg text-[#1a1a18]">Enter Your ARDMS Credentials</h1>
@@ -190,17 +190,17 @@ export default function SonographerVerifyPage() {
           <div className="card p-6">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
-                background: verifyStatus === 'active' ? '#d1fae5' : verifyStatus === 'not_found' || verifyStatus === 'inactive' ? '#fae8e7' : '#f4f4f4'
+                background: verifyStatus === 'active' ? '#d1fae5' : verifyStatus === 'not_found' || verifyStatus === 'inactive' ? '#ebf5ec' : '#f4f4f4'
               }}>
                 {verifyStatus === 'loading' ? (
                   <svg className="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="10" stroke="#e4e4e3" strokeWidth="2" />
-                    <path d="M12 2a10 10 0 0 1 10 10" stroke="#d25244" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="#5cb167" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 ) : verifyStatus === 'active' ? (
                   <ShieldCheckIcon size={20} color="#059669" />
                 ) : (
-                  <ShieldCheckIcon size={20} color="#b03e33" />
+                  <ShieldCheckIcon size={20} color="#3d9b4a" />
                 )}
               </div>
               <div>
@@ -229,7 +229,7 @@ export default function SonographerVerifyPage() {
                     <div
                       key={i}
                       className="w-2 h-2 rounded-full animate-bounce"
-                      style={{ background: '#d25244', animationDelay: `${i * 0.15}s` }}
+                      style={{ background: '#5cb167', animationDelay: `${i * 0.15}s` }}
                     />
                   ))}
                 </div>
@@ -262,8 +262,8 @@ export default function SonographerVerifyPage() {
             {/* Not found */}
             {verifyStatus === 'not_found' && (
               <>
-                <div className="rounded-lg p-4 mb-5" style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}>
-                  <div className="text-sm font-semibold mb-1" style={{ color: '#b03e33' }}>
+                <div className="rounded-lg p-4 mb-5" style={{ background: '#ebf5ec', border: '1px solid #f0c0bb' }}>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#3d9b4a' }}>
                     No matching record found
                   </div>
                   <p className="text-xs" style={{ color: '#9a9a98' }}>
@@ -284,13 +284,13 @@ export default function SonographerVerifyPage() {
             {/* Inactive */}
             {verifyStatus === 'inactive' && (
               <>
-                <div className="rounded-lg p-4 mb-5" style={{ background: '#fae8e7', border: '1px solid #f0c0bb' }}>
-                  <div className="text-sm font-semibold mb-1" style={{ color: '#b03e33' }}>
+                <div className="rounded-lg p-4 mb-5" style={{ background: '#ebf5ec', border: '1px solid #f0c0bb' }}>
+                  <div className="text-sm font-semibold mb-1" style={{ color: '#3d9b4a' }}>
                     Credential is not currently active
                   </div>
                   <p className="text-xs" style={{ color: '#9a9a98' }}>
                     Your {form.credentialType} may be expired, lapsed, or suspended. Visit{' '}
-                    <a href="https://www.ardms.org" target="_blank" rel="noopener noreferrer" style={{ color: '#d25244' }}>ardms.org</a>{' '}
+                    <a href="https://www.ardms.org" target="_blank" rel="noopener noreferrer" style={{ color: '#5cb167' }}>ardms.org</a>{' '}
                     to renew your credential.
                   </p>
                 </div>
@@ -320,7 +320,7 @@ export default function SonographerVerifyPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs font-medium underline"
-                    style={{ color: '#d25244' }}
+                    style={{ color: '#5cb167' }}
                   >
                     Open Inteleos Verification ↗
                   </a>
@@ -344,13 +344,13 @@ export default function SonographerVerifyPage() {
             <div className="flex items-center gap-3 mb-5">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: verifyStatus === 'active' ? '#d1fae5' : '#fae8e7' }}
+                style={{ background: verifyStatus === 'active' ? '#d1fae5' : '#ebf5ec' }}
               >
-                <ShieldCheckIcon size={20} color={verifyStatus === 'active' ? '#059669' : '#b03e33'} />
+                <ShieldCheckIcon size={20} color={verifyStatus === 'active' ? '#059669' : '#3d9b4a'} />
               </div>
               <div>
                 <h1 className="font-bold text-lg text-[#1a1a18]">Complete Your Profile</h1>
-                <p className="text-xs" style={{ color: verifyStatus === 'active' ? '#059669' : '#b03e33' }}>
+                <p className="text-xs" style={{ color: verifyStatus === 'active' ? '#059669' : '#3d9b4a' }}>
                   {verifyStatus === 'active' ? 'Credential verified — now tell us your preferences' : 'Unverified — complete profile to search jobs'}
                 </p>
               </div>
@@ -378,7 +378,7 @@ export default function SonographerVerifyPage() {
                       className="badge transition-all"
                       style={
                         form.specialties.includes(s)
-                          ? { background: '#fae8e7', color: '#b03e33', border: '1px solid #d25244', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
+                          ? { background: '#ebf5ec', color: '#3d9b4a', border: '1px solid #5cb167', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
                           : { background: '#f4f4f4', color: '#3d3d3b', border: '1px solid #e4e4e3', textTransform: 'none', fontSize: '0.75rem', padding: '0.3rem 0.7rem' }
                       }
                     >
@@ -414,7 +414,7 @@ export default function SonographerVerifyPage() {
 
       <p className="text-xs mt-6 text-center max-w-sm" style={{ color: '#9a9a98' }}>
         Verification is performed directly against the official{' '}
-        <a href="https://online.ardms.org/statusverification/" target="_blank" rel="noopener noreferrer" style={{ color: '#d25244' }}>
+        <a href="https://online.ardms.org/statusverification/" target="_blank" rel="noopener noreferrer" style={{ color: '#5cb167' }}>
           Inteleos registry
         </a>
         . Your ARDMS ID is not stored on SonoJob servers.

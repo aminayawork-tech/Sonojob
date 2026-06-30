@@ -8,10 +8,10 @@
   --muted: #9a9a98;
   --foreground: #1a1a18;
   --foreground-soft: #3d3d3b;
-  --accent: #d25244;
-  --accent-dark: #b03e33;
-  --accent-light: #fae8e7;
-  --accent-border: #f0c0bb;
+  --accent: #5cb167;
+  --accent-dark: #3d9b4a;
+  --accent-light: #ebf5ec;
+  --accent-border: #c2e5c4;
   --teal: #14b8a6;
   --teal-light: #ccfbf1;
   --orange: #f97316;
@@ -75,7 +75,7 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(210, 82, 68, 0.12);
+  box-shadow: 0 0 0 3px rgba(92, 177, 103, 0.15);
 }
 
 input::placeholder {
@@ -105,7 +105,7 @@ select option {
 
 .btn-primary:hover {
   background: var(--accent-dark);
-  box-shadow: 0 4px 12px rgba(210, 82, 68, 0.3);
+  box-shadow: 0 4px 12px rgba(92, 177, 103, 0.3);
 }
 
 .btn-secondary {
@@ -147,7 +147,7 @@ select option {
 
 .btn-amber:hover {
   background: var(--accent-dark);
-  box-shadow: 0 4px 12px rgba(210, 82, 68, 0.3);
+  box-shadow: 0 4px 12px rgba(92, 177, 103, 0.3);
 }
 
 /* Scrollbar */
