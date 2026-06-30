@@ -62,7 +62,7 @@ export default function SonographerVerifyPage() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4 py-12"
-      style={{ background: 'linear-gradient(135deg, #ffffff 0%, #dad6d0 60%, #ede9e3 100%)' }}
+      style={{ background: '#f5f5f4' }}
     >
       {/* Logo */}
       <div className="mb-8">
